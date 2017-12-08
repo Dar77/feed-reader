@@ -96,62 +96,18 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        var results;
 
         beforeEach(function(done) { // pass done to the callback
-            //originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-            //jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-
-            results = loadFeed(2,
-                done()
-                /*
-                success: function(result, status) {
-                    var entry = result.feed.entries;
-                    done();
-                    console.log(entry, 'results');
-                }
-                */
-            );
+            loadFeed(2, done); // call loadFeed function
         });
-/*
- describe("when retrieved by name", function() {
-    var menu;
-
-    beforeEach(function(done) {
-      menu = menus.getMenuByName('dinner', {
-        success: function () {
-          done();
-        }
-      });
-    });
-/*
-beforeEach(function(done) {
-    setTimeout(function() {
-      value = 0;
-      done();
-    }, 1);
-  });
-
-it("should support async execution of test preparation and expectations", function(done) {
-    value++;
-    expect(value).toBeGreaterThan(0);
-    done();
-  });
-
-            /*
-            loadFeed(function() { // call async function
-                console.log(0, '0 in beforeEach');
-                done(); // this signals to the framework when an async function has completed and we're ready to go run our tests
-            });
-            */
-
 
         it('has at least one .entry element in the .feed container', function(done) {
 
-            var entries = $('.feed .entry-link').length;
+            var entries = $('.feed .entry').length; // the number of entries in the .feed div
             console.log(entries, 'entries');
-            //expect(entries).not.toBe(0);
-            expect($(entries).length).toBeGreaterThan(0);
+            var contentOne = $('.feed .entry-link').first();
+            console.log(contentOne, 'conentOne content');
+            expect($(entries).length).toBeGreaterThan(0); // checks number of entries (.entry class) is more than 0
             done();
         });
     });
@@ -162,10 +118,18 @@ it("should support async execution of test preparation and expectations", functi
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-         /*
-        it('loads new content when a new feed is selected', function() {
+/*
+        beforeEach(function(done) { // pass done to the callback
+            loadFeed(3, done); // call loadFeed function
+        });
+
+        it('loads new content when a new feed is selected', function(done) {
+          var contentOne = $('a .entry h2').first().text();
+          var contentTwo = $('a .entry h2').first().text();
+          expect(contentOne).not.toEqual(contentTwo);
+          done();
 
         });
     });
-    */
+*/
 }());
