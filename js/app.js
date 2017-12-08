@@ -67,7 +67,6 @@ function init() {
                   * the resulting HTML to the list of entries on the page.
                   */
                  entries.forEach(function(entry) {
-                     //console.log(entry); // remove ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                      container.append(entryTemplate(entry));
                  });
 
