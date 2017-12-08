@@ -103,11 +103,11 @@ $(function() {
 
         it('has at least one .entry element in the .feed container', function(done) {
 
-            var entries = $('.feed .entry').length; // the number of entries in the .feed div
-            console.log(entries, 'entries');
-            var contentOne = $('.feed .entry-link').first();
-            console.log(contentOne, 'conentOne content');
-            expect($(entries).length).toBeGreaterThan(0); // checks number of entries (.entry class) is more than 0
+            //var entries = $('.feed .entry').length; // the number of entries in the .feed div
+            //console.log(entries, 'entries');
+            //var contentOne = $('.feed .entry-link').first();
+            //console.log(contentOne, 'conentOne content');
+            expect($('.feed .entry').length).not.toBe(0); // checks number of entries (.entry class) is more than 0
             done();
         });
     });
