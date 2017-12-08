@@ -124,8 +124,8 @@ $(function() {
         });
 
         it('loads new content when a new feed is selected', function(done) {
-          var contentOne = $('a .entry h2').first().text();
-          var contentTwo = $('a .entry h2').first().text();
+          var contentOne = $('a .entry h2').text(); // or .first()
+          var contentTwo = $('a .entry h2').text();
           expect(contentOne).not.toEqual(contentTwo);
           done();
 
