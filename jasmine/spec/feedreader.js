@@ -26,12 +26,10 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-
         it('all have a url', function() {
             var url;
             for (var i = 0; i < allFeeds.length; i++) { // loop through allFeeds
@@ -40,7 +38,6 @@ $(function() {
                 expect(url).not.toBe('');
             }
         });
-
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
@@ -68,6 +65,7 @@ $(function() {
             menuHidden = $('body').hasClass('menu-hidden'); // check if body has class of menu-hidden to hide menu
             expect(menuHidden).toEqual(true);
         });
+
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
@@ -84,7 +82,6 @@ $(function() {
             var hideMenu = $('body').hasClass('menu-hidden'); // see if the body has a class of menu-hidden after click event
             expect(hideMenu).toEqual(true); // on second click of menu icon showMenu should equal true - making the menu hidden
         });
-
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -96,40 +93,37 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-
         beforeEach(function(done) { // pass done to the callback
             loadFeed(2, done); // call loadFeed function
         });
 
         it('has at least one .entry element in the .feed container', function(done) {
 
-            //var entries = $('.feed .entry').length; // the number of entries in the .feed div
-            //console.log(entries, 'entries');
-            //var contentOne = $('.feed .entry-link').first();
-            //console.log(contentOne, 'conentOne content');
-            expect($('.feed .entry').length).not.toBe(0); // checks number of entries (.entry class) is more than 0
+            expect($('.entry').length).not.toBe(0); // checks number of entries (.entry class) is more than 0
             done();
         });
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-    //describe('New Feed Selection', function() {
+    describe('New Feed Selection', function() {
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-/*
+        var resultsArray = [];
         beforeEach(function(done) { // pass done to the callback
-            loadFeed(3, done); // call loadFeed function
+            var content = $('a .entry h2').text(); // the text from the first feed is loaded
+            resultsArray.push(content); // add this to the results array
+            loadFeed(3, done); // call loadFeed function - load a different feed
         });
 
         it('loads new content when a new feed is selected', function(done) {
-          var contentOne = $('a .entry h2').text(); // or .first()
-          var contentTwo = $('a .entry h2').text();
-          expect(contentOne).not.toEqual(contentTwo);
-          done();
 
+            contentTwo = $('a .entry h2').text(); // the text from the second feed is loaded
+            resultsArray.push(contentTwo); // add this to the results array
+            expect(resultsArray[0]).not.toEqual(resultsArray[1]); // compare the text from the two different feeds, expect them not to be different
+            done();
         });
     });
-*/
+
 }());
