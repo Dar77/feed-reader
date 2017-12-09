@@ -34,8 +34,8 @@ $(function() {
             var url;
             for (var i = 0; i < allFeeds.length; i++) { // loop through allFeeds
                 url = allFeeds[i].url;
-                expect(url).toBeDefined();
-                expect(url).not.toBe('');
+                expect(url).toBeDefined(); // check the url is defined
+                expect(url).not.toBe(''); // check the the url is not empty
             }
         });
 
@@ -47,8 +47,8 @@ $(function() {
             var name;
             for (var i = 0; i < allFeeds.length; i++) { // loop through allFeeds
                 name = allFeeds[i].name;
-                expect(name).toBeDefined();
-                expect(name).not.toBe('');
+                expect(name).toBeDefined(); // check the name is defined
+                expect(name).not.toBe(''); // check the name is not empty
             }
         });
     });
@@ -63,7 +63,7 @@ $(function() {
          */
         it('is hidden by default', function() {
             menuHidden = $('body').hasClass('menu-hidden'); // check if body has class of menu-hidden to hide menu
-            expect(menuHidden).toEqual(true);
+            expect(menuHidden).toEqual(true); // expect this to be true
         });
 
          /* TODO: Write a test that ensures the menu changes
@@ -85,7 +85,6 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
-
     describe('Initial Entries', function() {
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -112,18 +111,17 @@ $(function() {
          */
         var resultsArray = [];
         beforeEach(function(done) { // pass done to the callback
-            var content = $('a .entry h2').text(); // the text from the first feed is loaded
+            var content = $('a .entry h2').text(); // the text from the first feed
             resultsArray.push(content); // add this to the results array
             loadFeed(3, done); // call loadFeed function - load a different feed
         });
 
         it('loads new content when a new feed is selected', function(done) {
 
-            contentTwo = $('a .entry h2').text(); // the text from the second feed is loaded
+            contentTwo = $('a .entry h2').text(); // the text from the second feed
             resultsArray.push(contentTwo); // add this to the results array
-            expect(resultsArray[0]).not.toEqual(resultsArray[1]); // compare the text from the two different feeds, expect them not to be different
+            expect(resultsArray[0]).not.toEqual(resultsArray[1]); // compare the text from the two different feeds, expect them to be different
             done();
         });
     });
-
 }());
