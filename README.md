@@ -35,4 +35,5 @@ ___
 To run the project please **fork** a copy to your **Git Hub** account and **clone** to your local machine with **Git**.
 
 - Open **index.html** in the browser to view.
-- The test suites and individual tests are listed at the bottom of page, or the failed tests are detailed.
+- The test suites and individual test results are listed at the bottom of page, or the failed tests are detailed.
+- The actual tests are located in **jasmine/spec/feedreader.js**.
