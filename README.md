@@ -45,7 +45,7 @@ ___
 
 I've added tests for a feature that is not yet implemented in the application. This feature shows a 'tick' icon when the user selects a listed feed article. The ticks let them know which feed articles they have already viewed.
 
-The icon could be added to the page by appending a ```html <span class="icon icon-checkmark"></span> ``` to the page on click.
+The icon could possibly be added to the page by appending a conditional ```<span class="icon icon-checkmark"></span> ``` to the **handlebars template** on click.
 
 ___
 
