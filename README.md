@@ -37,3 +37,58 @@ To run the project please **fork** a copy to your **Git Hub** account and **clon
 - Open **index.html** in the browser to view.
 - The test suites and individual test results are listed at the bottom of page, or the failed tests are detailed.
 - The actual tests are located in **jasmine/spec/feedreader.js**.
+
+___
+
+
+## Future Feature Tests
+
+I've added tests for a feature that is not yet implemented in the application. This feature shows a 'tick' icon when the user selects a listed feed article. The ticks let them know which feed articles they have already viewed.
+
+The icon could be added to the page by appending a ```html <span class="icon icon-checkmark"></span> ``` to the page on click.
+
+___
+
+
+### Extra tests summary:
+
+- Test that the check-mark icon is not visible by default when the feed first loads.
+- Test that when a feed article is selected the check-mark icon is visible.
+
+___
+
+
+### The future feature test suite:
+
+```javascript
+    describe('Visited Icon', function() {
+
+        beforeEach(function(done) { // pass done to the callback
+
+            loadFeed(1, done); // call loadFeed function - load a different feed
+        });
+
+        /* Test to check there is no visited icon (check-mark or tick) visible by default when the feed first loads*/
+        it('does not show by default', function(done) {
+
+            var checkIcon = $('article').hasClass('icon-checkmark'); // try to find a .icon-checkmark, which is a tick
+            expect(checkIcon).not.toEqual(true); // expect on first loading a feed not to find it
+            done();
+        });
+
+        /* Test to check visited icon shows when feed article is clicked and visited*/
+        it('shows after feed article has been visited', function(done) {
+
+            var selected = $('.entry-link').first(); // the first list item from the feed-list
+            selected.click(); // select - 'click' the first item. This should show the check icon
+            var showCheckIcon = $('article').hasClass('icon-checkmark'); // try to find a .icon-checkmark
+            expect(showCheckIcon).toEqual(true); // expect this to be true - the check icon is visible showing the feed article has been visited by the user.
+            done();
+        });
+    });
+```
+
+- The first test will currently pass because the checkmark icon is already not defined.
+- The last test will fail because the feature is not yet implemented.
+
+___
