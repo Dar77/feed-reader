@@ -22,6 +22,7 @@ $(function() {
          * page?
          */
         it('are defined', function() {
+
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -31,6 +32,7 @@ $(function() {
          * and that the URL is not empty.
          */
         it('all have a url', function() {
+
             var url;
             for (var i = 0; i < allFeeds.length; i++) { // loop through allFeeds
                 url = allFeeds[i].url;
@@ -44,6 +46,7 @@ $(function() {
          * and that the name is not empty.
          */
         it('all have a name defined', function() {
+
             var name;
             for (var i = 0; i < allFeeds.length; i++) { // loop through allFeeds
                 name = allFeeds[i].name;
@@ -62,6 +65,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it('is hidden by default', function() {
+
             menuHidden = $('body').hasClass('menu-hidden'); // check if body has class of menu-hidden to hide menu
             expect(menuHidden).toEqual(true); // expect this to be true
         });
@@ -71,8 +75,8 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-
         it('visibility is toggled when menu is clicked', function() {
+
             var menuTrigger = $('.menu-icon-link'); // the menu icon element for click event
             menuTrigger.click(); // trigger the menu
             var showMenu = $('body').hasClass('menu-hidden'); // see if the body still has a class of menu-hidden after click event
@@ -93,6 +97,7 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         beforeEach(function(done) { // pass done to the callback
+
             loadFeed(2, done); // call loadFeed function
         });
 
@@ -111,6 +116,7 @@ $(function() {
          */
         var resultsArray = [];
         beforeEach(function(done) { // pass done to the callback
+
             var content = $('a .entry h2').text(); // the text from the first feed
             resultsArray.push(content); // add this to the results array
             loadFeed(3, done); // call loadFeed function - load a different feed
@@ -121,6 +127,35 @@ $(function() {
             contentTwo = $('a .entry h2').text(); // the text from the second feed
             resultsArray.push(contentTwo); // add this to the results array
             expect(resultsArray[0]).not.toEqual(resultsArray[1]); // compare the text from the two different feeds, expect them to be different
+            done();
+        });
+    });
+
+    // Tests for future feature - the last test will fail because the feature is not yet implemented
+    // the first will pass because the checkmark icon is already not defined
+    // This feature will add a tick icon to show the user has visited a feed article in the list.
+    describe('Visited Icon', function() {
+
+        beforeEach(function(done) { // pass done to the callback
+
+            loadFeed(1, done); // call loadFeed function - load a different feed
+        });
+
+        /* Test to check there is no visited icon (check-mark tick) visible by default when the feed first loads*/
+        it('does not show by default', function(done) {
+
+            var checkIcon = $('article').hasClass('icon-checkmark'); // try to find a .icon-checkmark, which is a tick
+            expect(checkIcon).not.toEqual(true); // expect on first loading a feed not to find it
+            done();
+        });
+
+        /* Test to check visited icon shows when feed article is clicked and visited*/
+        it('shows after feed article has been visited', function(done) {
+
+            var selected = $('.entry-link').first(); // the first list item from the feed-list
+            selected.click(); // select - 'click' the first item. This should show the check icon
+            var showCheckIcon = $('article').hasClass('icon-checkmark'); // try to find a .icon-checkmark
+            expect(showCheckIcon).toEqual(true); // expect this to be true - the check icon is visible showing the feed article has been visited by the user.
             done();
         });
     });
