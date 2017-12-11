@@ -68,27 +68,26 @@ ___
             loadFeed(1, done); // call loadFeed function - load a different feed
         });
 
-        /* Test to check there is no visited icon (check-mark or tick) visible by default when the feed first loads*/
-        it('does not show by default', function(done) {
+        /* Test to check there is no visited icon (check-mark tick) visible by default when the feed first loads*/
+        xit('does not show by default', function() { // marked 'xit' as a pending test
 
             var checkIcon = $('article').hasClass('icon-checkmark'); // try to find a .icon-checkmark, which is a tick
             expect(checkIcon).not.toEqual(true); // expect on first loading a feed not to find it
-            done();
         });
 
         /* Test to check visited icon shows when feed article is clicked and visited*/
-        it('shows after feed article has been visited', function(done) {
+        xit('shows after feed article has been visited', function() { // marked 'xit' as a pending test
 
             var selected = $('.entry-link').first(); // the first list item from the feed-list
             selected.click(); // select - 'click' the first item. This should show the check icon
             var showCheckIcon = $('article').hasClass('icon-checkmark'); // try to find a .icon-checkmark
             expect(showCheckIcon).toEqual(true); // expect this to be true - the check icon is visible showing the feed article has been visited by the user.
-            done();
         });
     });
 ```
 
-- The first test will currently pass because the checkmark icon is already not defined.
-- The last test will fail because the feature is not yet implemented.
+- Both tests are marked as pending with 'xit'.
+- If run, the first test will currently pass because the checkmark icon is already not defined.
+- If run, the last test will fail because the feature is not yet implemented.
 
 ___

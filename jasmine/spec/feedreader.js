@@ -27,7 +27,7 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* A test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
@@ -41,7 +41,7 @@ $(function() {
             }
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* A test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
@@ -57,9 +57,9 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* A new test suite */
     describe('The menu', function() {
-        /* TODO: Write a test that ensures the menu element is
+        /* A test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
@@ -70,7 +70,7 @@ $(function() {
             expect(menuHidden).toEqual(true); // expect this to be true
         });
 
-         /* TODO: Write a test that ensures the menu changes
+         /* A test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
@@ -88,75 +88,74 @@ $(function() {
         });
     });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* A new test suite */
     describe('Initial Entries', function() {
-        /* TODO: Write a test that ensures when the loadFeed
+        /* A test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
+         * loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        beforeEach(function(done) { // pass done to the callback
+        beforeEach(function(done) { // pass done as an argument
 
             loadFeed(2, done); // call loadFeed function
         });
 
-        it('has at least one .entry element in the .feed container', function(done) {
+        it('has at least one .entry element in the .feed container', function() {
 
-            expect($('.entry').length).not.toBe(0); // checks number of entries (.entry class) is more than 0
-            done();
+            expect($('.feed .entry').length).not.toBe(0); // checks the number of .entry class, entries in the .feed container is more than 0
         });
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /* A new test suite */
     describe('New Feed Selection', function() {
-        /* TODO: Write a test that ensures when a new feed is loaded
+        /* A test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
+         * loadFeed() is asynchronous.
          */
         var resultsArray = [];
-        beforeEach(function(done) { // pass done to the callback
+        beforeEach(function(done) { // pass done as an argument
 
-            var content = $('a .entry h2').text(); // the text from the first feed
-            resultsArray.push(content); // add this to the results array
-            loadFeed(3, done); // call loadFeed function - load a different feed
+            loadFeed(1, function() { // load feed[1]
+
+                var content = $('.feed').text(); // the text from feed[1]
+                resultsArray.push(content); // add this to the results array
+                loadFeed(3, done); // load feed[3]
+            });
         });
 
-        it('loads new content when a new feed is selected', function(done) {
+        it('loads new content when a new feed is selected', function() {
 
-            contentTwo = $('a .entry h2').text(); // the text from the second feed
+            contentTwo = $('.feed').text(); // the text from feed[3]
             resultsArray.push(contentTwo); // add this to the results array
             expect(resultsArray[0]).not.toEqual(resultsArray[1]); // compare the text from the two different feeds, expect them to be different
-            done();
         });
     });
 
-    // Tests for future feature - the last test will fail because the feature is not yet implemented
-    // the first will pass because the checkmark icon is already not defined
+    // Tests for future feature
+    // Specs are marked pending - to be added
     // This feature will add a tick icon to show the user has visited a feed article in the list.
     describe('Visited Icon', function() {
 
-        beforeEach(function(done) { // pass done to the callback
+        beforeEach(function(done) { // pass done as an argument
 
             loadFeed(1, done); // call loadFeed function - load a different feed
         });
 
         /* Test to check there is no visited icon (check-mark tick) visible by default when the feed first loads*/
-        it('does not show by default', function(done) {
+        xit('does not show by default', function() { // marked 'xit' as a pending test
 
             var checkIcon = $('article').hasClass('icon-checkmark'); // try to find a .icon-checkmark, which is a tick
             expect(checkIcon).not.toEqual(true); // expect on first loading a feed not to find it
-            done();
         });
 
         /* Test to check visited icon shows when feed article is clicked and visited*/
-        it('shows after feed article has been visited', function(done) {
+        xit('shows after feed article has been visited', function() { // marked 'xit' as a pending test
 
             var selected = $('.entry-link').first(); // the first list item from the feed-list
             selected.click(); // select - 'click' the first item. This should show the check icon
             var showCheckIcon = $('article').hasClass('icon-checkmark'); // try to find a .icon-checkmark
             expect(showCheckIcon).toEqual(true); // expect this to be true - the check icon is visible showing the feed article has been visited by the user.
-            done();
         });
     });
 }());
