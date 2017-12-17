@@ -14,17 +14,16 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
+        /* The first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
+         * empty. Also I've added a check on the number of feeds
          */
         it('are defined', function() {
 
+            var length = allFeeds.length >= 4; // check allFeeds length is greater than or equal to 4
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
+            expect(length).toEqual(true);
         });
 
         /* A test that loops through each feed
@@ -33,12 +32,10 @@ $(function() {
          */
         it('all have a url', function() {
 
-            var url;
-            for (var i = 0; i < allFeeds.length; i++) { // loop through allFeeds
-                url = allFeeds[i].url;
-                expect(url).toBeDefined(); // check the url is defined
-                expect(url).not.toBe(''); // check the the url is not empty
-            }
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeDefined(); // check the url is defined
+                expect(feed.url).not.toBe(''); // check the the url is not empty
+            });
         });
 
         /* A test that loops through each feed
@@ -47,12 +44,10 @@ $(function() {
          */
         it('all have a name defined', function() {
 
-            var name;
-            for (var i = 0; i < allFeeds.length; i++) { // loop through allFeeds
-                name = allFeeds[i].name;
-                expect(name).toBeDefined(); // check the name is defined
-                expect(name).not.toBe(''); // check the name is not empty
-            }
+            allFeeds.forEach(function(feed) {
+                expect(feed.name).toBeDefined(); // check the name is defined
+                expect(feed.name).not.toBe(''); // check the name is not empty
+            });
         });
     });
 
