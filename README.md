@@ -8,6 +8,8 @@ For this project we were provided with a web based application that reads **RSS*
 This is a project from Udacity's **Frontend Nanodegree** [program](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001).
 ___
 
+Visit: [feed reader](http://www.it48.xyz/feed-reader)
+
 ![feed reader project](images/feed-reader-screen.png)
 
 ___
